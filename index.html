@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Official Memorandum — Anniversary Date Amendment</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=IM+Fell+English:ital@0;1&family=Josefin+Sans:wght@300;400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #1a1209;
+      --ink-light: #3d2f1a;
+      --parchment: #f5f0e8;
+      --parchment-dark: #e8dfc9;
+      --gold: #b8922a;
+      --gold-light: #d4a83a;
+      --red-seal: #8b1a1a;
+      --rule: #b8922a;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #2a1f0e;
+      background-image:
+        repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 2px,
+          rgba(0,0,0,0.03) 2px,
+          rgba(0,0,0,0.03) 4px
+        );
+      min-height: 100vh;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 48px 16px;
+      font-family: 'Cormorant Garamond', serif;
+    }
+
+    .paper {
+      background: var(--parchment);
+      max-width: 760px;
+      width: 100%;
+      padding: 64px 80px 72px;
+      position: relative;
+      box-shadow:
+        0 0 0 1px rgba(184,146,42,0.3),
+        0 2px 4px rgba(0,0,0,0.2),
+        4px 6px 24px rgba(0,0,0,0.4),
+        8px 12px 48px rgba(0,0,0,0.3);
+      animation: unfurl 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    @keyframes unfurl {
+      from { opacity: 0; transform: translateY(24px) scale(0.98); }
+      to   { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    /* Paper texture overlay */
+    .paper::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      opacity: 0.6;
+    }
+
+    /* Corner ornaments */
+    .corner {
+      position: absolute;
+      width: 48px;
+      height: 48px;
+      color: var(--gold);
+      opacity: 0.6;
+    }
+    .corner svg { width: 100%; height: 100%; }
+    .corner.tl { top: 16px; left: 16px; }
+    .corner.tr { top: 16px; right: 16px; transform: scaleX(-1); }
+    .corner.bl { bottom: 16px; left: 16px; transform: scaleY(-1); }
+    .corner.br { bottom: 16px; right: 16px; transform: scale(-1); }
+
+    /* Header */
+    .header {
+      text-align: center;
+      margin-bottom: 36px;
+    }
+
+    .seal-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .rule-line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--rule), transparent);
+    }
+
+    .seal-icon {
+      font-size: 28px;
+      line-height: 1;
+    }
+
+    .issuer {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 10px;
+      font-weight: 300;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+
+    .doc-type {
+      font-family: 'IM Fell English', serif;
+      font-size: 28px;
+      font-weight: 400;
+      color: var(--ink);
+      letter-spacing: 0.05em;
+      line-height: 1.2;
+      margin-bottom: 4px;
+    }
+
+    .doc-subtitle {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 14px;
+      color: var(--ink-light);
+      letter-spacing: 0.1em;
+    }
+
+    /* Double rule */
+    .double-rule {
+      height: 8px;
+      border-top: 2px solid var(--gold);
+      border-bottom: 1px solid var(--gold);
+      margin: 0 0 32px;
+      opacity: 0.5;
+    }
+
+    /* Metadata block */
+    .meta-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px 24px;
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 10.5px;
+      letter-spacing: 0.1em;
+      color: var(--ink-light);
+      margin-bottom: 32px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--parchment-dark);
+    }
+
+    .meta-item {
+      display: flex;
+      gap: 8px;
+      align-items: baseline;
+    }
+
+    .meta-label {
+      font-weight: 400;
+      text-transform: uppercase;
+      color: var(--gold);
+      min-width: fit-content;
+      flex-shrink: 0;
+    }
+
+    .meta-value {
+      font-weight: 300;
+      color: var(--ink);
+    }
+
+    /* Subject block */
+    .subject-block {
+      background: var(--parchment-dark);
+      border-left: 3px solid var(--gold);
+      padding: 14px 20px;
+      margin-bottom: 32px;
+    }
+
+    .subject-label {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 9px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 4px;
+    }
+
+    .subject-text {
+      font-family: 'IM Fell English', serif;
+      font-size: 15px;
+      color: var(--ink);
+      line-height: 1.4;
+    }
+
+    /* Body */
+    .body-text {
+      font-size: 16px;
+      line-height: 1.85;
+      color: var(--ink);
+      font-weight: 300;
+      margin-bottom: 22px;
+      text-align: justify;
+      text-indent: 2em;
+    }
+
+    .body-text:first-of-type {
+      text-indent: 0;
+    }
+
+    .body-text strong {
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .body-text em {
+      font-style: italic;
+    }
+
+    /* Date amendment box */
+    .amendment-box {
+      border: 1px solid var(--gold);
+      padding: 28px 32px;
+      margin: 32px 0;
+      position: relative;
+      text-align: center;
+    }
+
+    .amendment-box::before {
+      content: 'OFFICIAL AMENDMENT';
+      position: absolute;
+      top: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--parchment);
+      padding: 0 12px;
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 9px;
+      letter-spacing: 0.3em;
+      color: var(--gold);
+    }
+
+    .date-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+      margin-bottom: 8px;
+    }
+
+    .date-block {
+      text-align: center;
+    }
+
+    .date-descriptor {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 9px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      margin-bottom: 6px;
+    }
+
+    .date-value {
+      font-family: 'IM Fell English', serif;
+      font-size: 22px;
+      color: var(--ink);
+    }
+
+    .date-value.old {
+      text-decoration: line-through;
+      color: var(--red-seal);
+      opacity: 0.6;
+      font-size: 18px;
+    }
+
+    .date-value.new {
+      color: var(--ink);
+      font-size: 24px;
+    }
+
+    .arrow-divider {
+      font-size: 20px;
+      color: var(--gold);
+      line-height: 1;
+      margin-top: 4px;
+    }
+
+    .amendment-note {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 13px;
+      color: var(--ink-light);
+      margin-top: 12px;
+      letter-spacing: 0.05em;
+    }
+
+    /* Signature section */
+    .sig-section {
+      margin-top: 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 24px;
+    }
+
+    .sig-block {
+      flex: 1;
+    }
+
+    .sig-label {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 9px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 32px;
+    }
+
+    .sig-line {
+      border-bottom: 1px solid var(--ink-light);
+      margin-bottom: 6px;
+      width: 80%;
+    }
+
+    .sig-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 13px;
+      color: var(--ink-light);
+    }
+
+    /* Red seal stamp */
+    .seal-stamp {
+      width: 90px;
+      height: 90px;
+      border: 3px double var(--red-seal);
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: var(--red-seal);
+      opacity: 0.7;
+      transform: rotate(-12deg);
+      flex-shrink: 0;
+      padding: 8px;
+      text-align: center;
+      gap: 2px;
+    }
+
+    .seal-top {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 7px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    .seal-main {
+      font-family: 'IM Fell English', serif;
+      font-size: 11px;
+      line-height: 1.2;
+    }
+
+    .seal-bottom {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 6.5px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    /* Footer */
+    .footer {
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid var(--parchment-dark);
+      text-align: center;
+    }
+
+    .footer-text {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.7;
+    }
+
+    @media (max-width: 600px) {
+      .paper { padding: 48px 32px 56px; }
+      .meta-grid { grid-template-columns: 1fr; }
+      .sig-section { flex-direction: column; align-items: flex-start; }
+      .date-row { flex-direction: column; gap: 8px; }
+      .arrow-divider { transform: rotate(90deg); }
+    }
+
+    @media print {
+      body { background: white; padding: 0; }
+      .paper { box-shadow: none; max-width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="paper">
+
+    <!-- Corner ornaments -->
+    <div class="corner tl"><svg viewBox="0 0 48 48" fill="currentColor"><path d="M2 2h12v2H4v10H2V2zm6 6h4v2H8V8zm0 4h2v4H8v-4z"/><path d="M2 2v10h2V4h10V2H2z" opacity="0.4"/></svg></div>
+    <div class="corner tr"><svg viewBox="0 0 48 48" fill="currentColor"><path d="M2 2h12v2H4v10H2V2zm6 6h4v2H8V8zm0 4h2v4H8v-4z"/></svg></div>
+    <div class="corner bl"><svg viewBox="0 0 48 48" fill="currentColor"><path d="M2 2h12v2H4v10H2V2zm6 6h4v2H8V8zm0 4h2v4H8v-4z"/></svg></div>
+    <div class="corner br"><svg viewBox="0 0 48 48" fill="currentColor"><path d="M2 2h12v2H4v10H2V2zm6 6h4v2H8V8zm0 4h2v4H8v-4z"/></svg></div>
+
+    <!-- Header -->
+    <div class="header">
+      <div class="seal-row">
+        <div class="rule-line"></div>
+        <div class="seal-icon">♡</div>
+        <div class="rule-line"></div>
+      </div>
+      <div class="issuer">Office of Relationship Affairs &amp; Commemorative Scheduling</div>
+      <div class="doc-type">Memorandum</div>
+      <div class="doc-subtitle">Re: Official Amendment to Annual Commemoration Date</div>
+    </div>
+
+    <div class="double-rule"></div>
+
+    <!-- Metadata -->
+    <div class="meta-grid">
+      <div class="meta-item">
+        <span class="meta-label">Memo No.</span>
+        <span class="meta-value">ORAC-2025-001</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Date Issued</span>
+        <span class="meta-value">June 4, 2025</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Classification</span>
+        <span class="meta-value">Deeply Personal / Non-Negotiable</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Distribution</span>
+        <span class="meta-value">All Parties Concerned (Both of You)</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Effective</span>
+        <span class="meta-value">February 25, 2027 &amp; In Perpetuity</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Priority</span>
+        <span class="meta-value">High — Mark Your Calendars</span>
+      </div>
+    </div>
+
+    <!-- Subject -->
+    <div class="subject-block">
+      <div class="subject-label">Subject</div>
+      <div class="subject-text">
+        Formal Amendment of the Annual Anniversary Celebration Date
+        Pertaining to the Event Colloquially Known as <em>"Sinagot na"</em>
+      </div>
+    </div>
+
+    <!-- Body -->
+    <p class="body-text">
+      This memorandum is issued by mutual understanding and with full affection to formally record, acknowledge, and effect the amendment of the officially observed anniversary date for the aforementioned occasion. All relevant parties are hereby informed, and no further deliberation is required.
+    </p>
+
+    <p class="body-text">
+      It has been determined, through careful consideration of scheduling, sentiment, and the general logistics of love, that the date previously designated for the annual commemoration of <em>Sinagot na</em> shall no longer be observed on its original date. The previous date of <strong>August 18</strong> is hereby retired from active service, with gratitude for its tenure.
+    </p>
+
+    <!-- Amendment Box -->
+    <div class="amendment-box">
+      <div class="date-row">
+        <div class="date-block">
+          <div class="date-descriptor">Previously Observed On</div>
+          <div class="date-value old">August 18</div>
+        </div>
+        <div class="arrow-divider">→</div>
+        <div class="date-block">
+          <div class="date-descriptor">Henceforth Observed On</div>
+          <div class="date-value new">February 25</div>
+        </div>
+      </div>
+      <div class="amendment-note">
+        Effective this year and all years to follow, without exception, excuse, or forgetfulness.
+      </div>
+    </div>
+
+    <p class="body-text">
+      The occasion to be commemorated — that singular, momentous, and rather brave act of <em>pagsagot</em> — remains unchanged in its significance and weight. Only the calendar date of its annual observance has been revised. The love, the memory, and the mild embarrassment of recounting the story remain fully intact and non-amendable.
+    </p>
+
+    <p class="body-text">
+      All parties are expected to honor <strong>February 25</strong> accordingly: with celebration, remembrance, and the appropriate acknowledgment that someone said yes. Any failure to observe the amended date may be cited in future negotiations. This memo shall serve as the official and binding record of said amendment.
+    </p>
+
+    <!-- Signature -->
+    <div class="sig-section">
+      <div>
+        <div class="sig-block">
+          <div class="sig-label">Issued &amp; Acknowledged By</div>
+          <div class="sig-line"></div>
+          <div class="sig-name">The One Who Asked</div>
+        </div>
+        <br/>
+        <div class="sig-block">
+          <div class="sig-line"></div>
+          <div class="sig-name">The One Who Said Yes</div>
+        </div>
+      </div>
+
+      <div class="seal-stamp">
+        <div class="seal-top">Officially</div>
+        <div class="seal-main">AMENDED<br/>&amp;<br/>SEALED</div>
+        <div class="seal-bottom">With Love</div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <div class="footer-text">
+        Office of Relationship Affairs &amp; Commemorative Scheduling &nbsp;·&nbsp;
+        Est. <em>Sinagot na</em> &nbsp;·&nbsp;
+        This document is legally binding in matters of the heart.
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>
